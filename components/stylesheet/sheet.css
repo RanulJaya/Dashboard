@@ -1,0 +1,45 @@
+h1 {
+  position: absolute;
+}
+
+#test1{
+    position: absolute;
+    cursor: grabbing;
+}
+
+#test4{
+  margin-left: 100px;
+  margin-top: 10px;
+  position: absolute;
+}
+
+.test5 {
+  top: 10px;
+  left: 25px;
+}
+
+.test6{
+  left: 350px;
+  top: 200px;
+  position: absolute;
+}
+
+
+.jokes {
+  top: 15px;
+  right: 165px;
+  position: absolute;
+}
+
+.jokes1 {
+  top: 15px;
+  left: 150px;
+  position: absolute;
+}
+
+#myCanvas {
+  position: absolute;
+  cursor: grabbing;
+}
+
+
