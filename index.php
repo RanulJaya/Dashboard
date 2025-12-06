@@ -6,7 +6,7 @@
 	// }
 	$uri = 'https://';
 	$uri .= $_SERVER['HTTP_HOST'];
-	header('Location: '.$uri.'/components/');
+	header('Location: '.$uri.'/components/index.html');
 	exit;
 ?>
 Something is wrong with the XAMPP installation :-(
