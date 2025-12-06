@@ -4,7 +4,7 @@
 	// } else {
 	// 	$uri = 'http://';
 	// }
-	$uri = 'https://'
+	$uri = 'https://';
 	$uri .= $_SERVER['HTTP_HOST'];
 	header('Location: '.$uri.'/components/');
 	exit;
