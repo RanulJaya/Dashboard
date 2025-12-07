@@ -5,34 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <!-- <div id="test1">
         <h1 id = "test">testq</h1>
     </div> -->
+    <div id="app">
+        <!-- <div id="editcontent" contenteditable="true">Please enter text</div> -->
 
-    <div id="editcontent" contenteditable="true">Please enter text</div>
+        <!-- <div id="test4">
+            <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+                <circle r="50" cx="50" cy="50" fill="green"/>
+            </svg>
+            <h1 class="test5">test</h1>
+        </div> -->
 
-    <!-- <div id="test4">
-        <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
-            <circle r="50" cx="50" cy="50" fill="green"/>
-        </svg>
-        <h1 class="test5">test</h1>
-    </div> -->
+        <!-- <div id="test6"> -->
+            <!-- <canvas id="myCanvas" width="200" height="100" style="border: 1px solid black;"></canvas> -->
+            <!-- <svg class="jokes" height="210" width="400" xmlns="http://www.w3.org/2000/svg">
+                <path d="M160 5 L135 25 L160 25 Z" style="fill:none;stroke:white;stroke-width:2" />
+            </svg> -->
+            <!-- <svg class="jokes1" height="210" width="400" xmlns="http://www.w3.org/2000/svg">
+                <path d="M161 4 L135 24" style="fill:none;stroke:black;stroke-width:1" />
+            </svg> -->
+        <!-- </div> -->
 
-    <div id="test6">
-        <canvas id="myCanvas" width="200" height="100" style="border: 1px solid black;"></canvas>
-        <!-- <svg class="jokes" height="210" width="400" xmlns="http://www.w3.org/2000/svg">
-            <path d="M160 5 L135 25 L160 25 Z" style="fill:none;stroke:white;stroke-width:2" />
-        </svg> -->
-        <!-- <svg class="jokes1" height="210" width="400" xmlns="http://www.w3.org/2000/svg">
-            <path d="M161 4 L135 24" style="fill:none;stroke:black;stroke-width:1" />
-        </svg> -->
+        <!-- <p id="test2"></p>
+        <p id="test3"></p> -->
+
+
+        <div id="cardGrab" class="card">
+            <div class="card-body">
+                <textarea id="text" oninput="this.parentNode.dataset.replicatedValue = this.value">Hello World</textarea>
+            </div>
+        </div>
+
+
     </div>
-
-    <p id="test2"></p>
-    <p id="test3"></p>
-
     <script src="js/test.js"></script>
 </body>
 </html>

@@ -1,63 +1,51 @@
-// dragElement(document.getElementById('test1'))
-// dragElement(document.getElementById('test6'))
-dragElement(document.getElementById("myCanvas"))
+let newX = 0, newY = 0, startX = 0, startY = 0;
 
 
-test.addEventListener("click",ClickEventMouse)
-test.addEventListener("keypress",onChangeText)
+const card = document.getElementById("cardGrab")
+const textArea = document.getElementById("text")
 
-function ClickEventMouse(){
-  console.log(test.innerText)
-  if (test.innerText == "Please enter text"){
-    test.innerText = ""
+// Initiate drag from adding listener
+card.addEventListener('mousedown', mouseDown)
+card.addEventListener('keypress', keyPress)
+
+function mouseDown(e){
+    // Start point of the coordinates
+    startX = e.clientX
+    startY = e.clientY
+
+    document.addEventListener('mousemove', mouseMove)
+    document.addEventListener('mouseup', mouseUp)
+}
+
+function mouseMove(e){
+    newX = startX - e.clientX 
+    newY = startY - e.clientY 
+  
+    startX = e.clientX
+    startY = e.clientY
+
+    card.style.top = (card.offsetTop - newY) + 'px'
+    card.style.left = (card.offsetLeft - newX) + 'px'
+
+}
+
+function mouseUp(e){
+    document.removeEventListener('mousemove', mouseMove)
+}
+
+
+// console.log(document.getElementsByClassName("card-body")[0].style)
+
+function keyPress(e){
+  if(card.clientHeight > 200){
+    card.style.height = "200px"
+    textArea.style.height = "175px"
+    textArea.style.overflowY = "visible"
   }
 }
 
-function onChangeText(e){
-  if(e.key == 'Enter') {
-    document.getElementById('test1').innerText = test.innerText
-    document.getElementById('test1').style.fontSize = "30px"
-    document.getElementById('test1').style.fontWeight = 1000
-  }
-}
-
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-   
-  if (document.getElementById(elmnt.id)) {
-    document.getElementById(elmnt.id).onmousedown = dragMouseDown;
-  } else {
-    elmnt.onmousedown = dragMouseDown;
-  }
-   
 
 
-  function dragMouseDown(e) {
-    e.preventDefault();
-    pos3 = e.clientX;
-    pos4 = e.clientY;
 
-    document.onmousemove = elementDrag;
-    document.onmouseup = closeDragElement;
 
-  }
-
-    function elementDrag(e) {
-    e.preventDefault();
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-
-    console.log(elmnt.style.top = (elmnt.offsetTop - pos2))
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
+            
