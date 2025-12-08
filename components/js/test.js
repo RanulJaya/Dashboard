@@ -1,8 +1,11 @@
 let newX = 0, newY = 0, startX = 0, startY = 0;
 
-
 const card = document.getElementById("cardGrab")
 const textArea = document.getElementById("text")
+const cardBody = document.querySelector(".card-body")
+
+
+  console.log(cardBody.style)
 
 // Initiate drag from adding listener
 card.addEventListener('mousedown', mouseDown)
@@ -33,10 +36,8 @@ function mouseUp(e){
     document.removeEventListener('mousemove', mouseMove)
 }
 
-
-// console.log(document.getElementsByClassName("card-body")[0].style)
-
 function keyPress(e){
+
   if(card.clientHeight > 200){
     card.style.height = "200px"
     textArea.style.height = "175px"
@@ -44,8 +45,15 @@ function keyPress(e){
   }
 }
 
+const xmlhttp = new XMLHttpRequest();
 
-
+xmlhttp.onload = function() {
+  const myObj = JSON.parse(this.responseText);
+  document.getElementById("demo").innerHTML = myObj.body;
+  document.getElementById("demo1").innerHTML = myObj.body1;
+}
+xmlhttp.open("GET", "../jsonParser.php");
+xmlhttp.send();
 
 
             

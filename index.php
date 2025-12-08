@@ -6,6 +6,7 @@
 	}
 
 	$uri .= $_SERVER['HTTP_HOST'];
+    // header("Access-Control-Allow-Origin: *");
 	header('Location: '.$uri.'/components/index.html');
 	exit;
 ?>
