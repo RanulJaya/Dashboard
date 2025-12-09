@@ -26,8 +26,12 @@ body {
     overflow: auto;
 }
 
+#cardGrab {
+  position: absolute;
+}
+
 .card {
-    position: relative;
+    position: absolute;
     cursor: grabbing;
     width: 400px;
     height: 200px;
@@ -35,7 +39,7 @@ body {
     box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% /
                     0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075), 0 8px 8px hsl(0deg
                     0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
-    background-color: rgb(120, 124, 124);
+    background-color: rgb(124, 124, 120);
 }
 
 .card-body {
@@ -70,6 +74,7 @@ textarea::after {
 }
 
 textarea {
+  position: initial;
   height: 200px;
   resize: none;
   overflow-y: hidden;
@@ -83,50 +88,4 @@ textarea {
   font: inherit;
   grid-area: 1 / 1 / 2 / 2;
 }
-
-
-/* h1 {
-  position: absolute;
-}
-
-#test1{
-    position: absolute;
-    cursor: grabbing;
-}
-
-#test4{
-  margin-left: 100px;
-  margin-top: 10px;
-  position: absolute;
-}
-
-.test5 {
-  top: 10px;
-  left: 25px;
-}
-
-.test6{
-  left: 350px;
-  top: 200px;
-  position: absolute;
-}
-
-
-.jokes {
-  top: 15px;
-  right: 165px;
-  position: absolute;
-}
-
-.jokes1 {
-  top: 15px;
-  left: 150px;
-  position: absolute;
-}
-
-#myCanvas {
-  position: absolute;
-  cursor: grabbing;
-} */
-
 
