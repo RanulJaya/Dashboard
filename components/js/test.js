@@ -49,8 +49,7 @@ const xmlhttp = new XMLHttpRequest();
 
 xmlhttp.onload = function() {
   const myObj = JSON.parse(this.responseText);
-  document.getElementById("demo").innerHTML = myObj.body;
-  document.getElementById("demo1").innerHTML = myObj.body1;
+  document.getElementById("demo").innerHTML = myObj[1]['body'];
 }
 xmlhttp.open("GET", "../jsonParser.php");
 xmlhttp.send();
