@@ -26,10 +26,6 @@ body {
     overflow: auto;
 }
 
-#cardGrab {
-  position: absolute;
-}
-
 .card {
     position: absolute;
     cursor: grabbing;
@@ -57,6 +53,8 @@ body {
     font-size: 16px;
     overflow-y: visible;
 }
+
+
  
 textarea:focus {
     background-color: inherit;
