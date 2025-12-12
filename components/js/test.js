@@ -4,17 +4,22 @@ for (let index = 0; index < 2; index++) {
     var board = document.createElement("div")
 
     board.id = 'cardGrab' + index.toString()
-    console.log(board.id)
     board.className = 'card'
     board.style.backgroundColor = 'rgba(223, 223, 89, 1)'
     board.style.top = '200px'
     board.style.left = '0px'
+
+    var para = document.createElement('p')
+    para.id = 'demo' + index
+    para.className = 'car'
 
     var childBoard = document.createElement('div')
     childBoard.className = 'card-body'
 
     board.appendChild(childBoard)
     parent.appendChild(board)
+
+    childBoard.appendChild(para)
 
     parentIndex = parentIndex + 1
 }
@@ -29,23 +34,17 @@ xmlhttp.send();
 xmlhttp.onload = function() {
   const myObj = JSON.parse(this.responseText);
   document.getElementById("demo").innerHTML = myObj[1]['body'];
+  document.getElementById("demo0").innerHTML = myObj[1]['body'];
+  document.getElementById("demo1").innerHTML = myObj[1]['body'];
 }
 
 let newX = 0, newY = 0, startX = 0, startY = 0;
 
-const card = []
-
-for (let index = 0; index < parentIndex; index++) {
-    let indexToString = "cardGrab" + index.toString()
-    card[index] = document.getElementById(indexToString.toString())
-}
+var card2 = document.getElementsByClassName('card')
 
 // Initiate drag from adding listener
-for(let i =0; i < card.length; i++){
-    card[i].addEventListener('mousedown', mouseDown)
-}
-
-
+card2[1].addEventListener('mousedown', mouseDown)
+card2[2].addEventListener('mousedown', mouseDown)
 
 function mouseDown(e){
     // Start point of the coordinates
@@ -63,13 +62,17 @@ function mouseMove(e){
 
     startX = e.clientX
     startY = e.clientY
-    
 
-    for (let index = 0; index < card.length; index++) {
-        if (card[index].id == e.target.id) {
-          card[index].style.top = (card[index].offsetTop - newY) + 'px'
-          card[index].style.left = (card[index].offsetLeft- newX) + 'px'
-        }
+    console.log(e.srcElement.offsetParent.id.includes('cardGrab'))
+    console.log(e.target.id)
+
+    if(e.srcElement.offsetParent.id.includes('cardGrab')){
+        document.getElementById(e.srcElement.offsetParent.id.toString()).style.top = (document.getElementById(e.srcElement.offsetParent.id.toString()).offsetTop - newY) + 'px'
+        document.getElementById(e.srcElement.offsetParent.id.toString()).style.left = (document.getElementById(e.srcElement.offsetParent.id.toString()).offsetLeft- newX) + 'px'
+    }
+    else if(e.target.id.includes('cardGrab')){
+        document.getElementById(e.target.id.toString()).style.top = (document.getElementById(e.target.id.toString()).offsetTop - newY) + 'px'
+        document.getElementById(e.target.id.toString()).style.left = (document.getElementById(e.target.id.toString()).offsetLeft- newX) + 'px'
     }
 }
 
