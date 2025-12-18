@@ -27,7 +27,7 @@ for (let index = 0; index < 2; index++) {
 
 parentIndex += 1;
 
-const button = document.getElementById('plus')
+const button = document.getElementsByClassName('addPlus')
 
 const xmlhttp = new XMLHttpRequest();
 
@@ -40,31 +40,33 @@ let newX = 0, newY = 0, startX = 0, startY = 0;
 //     card2[index].addEventListener('mousedown', mouseDown)
 // }
 
-const card = document.querySelectorAll('.card')
+var card = document.querySelectorAll('.card')
+
+console.log(card)
 
 card.forEach(cards => {
     cards.addEventListener('mousedown', mouseDown)
-    console.log(cards)
+    // console.log(cards)
 })
 
-button.addEventListener('click', addButton)
+button[0].addEventListener('click', addButton)
 
 function addButton(e){
-    var parent = document.getElementById('app')
-    var card = document.createElement('div')
+    let parent = document.getElementById('app')
+    let card = document.createElement('div')
     
     parentIndex +=1
 
-    card.id = 'cardGrab' + (parentIndex - 2).toString()
+    card.id = 'cardGrab' + (parentIndex - 1).toString()
     card.className = 'card'
     card.style.top = '200px'
     card.style.left = '200px'
 
-    var para = document.createElement('p')
+    let para = document.createElement('p')
     para.id = 'demo' + parentIndex
-    para.className = 'car'
+    para.className = 'car'  
 
-    var childBoard = document.createElement('div')
+    let childBoard = document.createElement('div')
     childBoard.className = 'card-body'
 
     card.appendChild(childBoard)
@@ -74,35 +76,19 @@ function addButton(e){
 
     card.addEventListener('mousedown', mouseDown)
 
-    // var element = document.getElementById('cardGrab' + parentIndex.toString())
+    //parsing through json parser
 
-    
-    xmlhttp.open("GET", "../jsonParser.php");
-    xmlhttp.send();
+    // xmlhttp.open("GET", "../jsonParser.php");
+    // xmlhttp.send();
 
-    xmlhttp.onload = function() {
-        const myObj = JSON.parse(this.responseText);
-        document.getElementById("demo4").innerHTML = myObj[1]['body'];
-    }
-
-    
-    // autoRender = setInterval(reRender(element), 1000)
-
-}
-
-function reRender(elmnt){
-    elmnt.style.display = 'none'
-    elmnt.style.display = 'block'
-}
-
-xmlhttp.open("GET", "../jsonParser.php");
-xmlhttp.send();
-
-xmlhttp.onload = function() {
-  const myObj = JSON.parse(this.responseText);
-  document.getElementById("demo").innerHTML = myObj[1]['body'];
-  document.getElementById("demo0").innerHTML = myObj[1]['body'];
-  document.getElementById("demo1").innerHTML = myObj[1]['body'];
+    // xmlhttp.onload = function() {
+    //     const myObj = JSON.parse(this.responseText);
+    //     const card = document.getElementsByClassName('card')
+        
+    //     for (let index = 0; index < card.length; index++) {
+    //         card.item(index).innerHTML = myObj[1]['body']
+    //     }
+    // }
 }
 
 
@@ -137,38 +123,3 @@ function mouseUp(e){
     document.removeEventListener('mousemove', mouseMove)
 }
 
-
-// testMainBox()
-            
-function testMainBox()
-{
-    const card = document.getElementById('cardGrab')
-
-    card.addEventListener('mousedown' ,mouseDown)
-    
-    function mouseDown(e){
-        // Start point of the coordinates
-        startX = e.clientX
-        startY = e.clientY
-
-        document.addEventListener('mousemove', mouseMove)
-        document.addEventListener('mouseup', mouseUp)
-
-    }
-
-    function mouseMove(e){
-        newX = startX - e.clientX 
-        newY = startY - e.clientY 
-
-        startX = e.clientX
-        startY = e.clientY
-
-        card.style.top = (card.offsetTop - newY) + 'px'
-        card.style.left = (card.offsetLeft- newX) + 'px'
-    }
-
-    function mouseUp(e){
-        document.removeEventListener('mousemove', mouseMove)
-    }
-
-}

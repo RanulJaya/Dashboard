@@ -1,4 +1,4 @@
-#addcard {
+.cardAdd {
     display: flex;
     height: 50px;
     width: 400px;
@@ -8,7 +8,7 @@
     margin: auto;
 }
 
-#plus {
+.addPlus {
     cursor: pointer;
     height:45px;
     width: 45px;
@@ -18,12 +18,12 @@
     background-color: rgb(235, 136, 69);   
 }
 
-#plus:hover {
+.addPlus:hover {
     background-color: rgb(99, 245, 63);
     transition-duration: 500ms;
 }
 
-#plusvert {
+.vertPlus {
     position: absolute;
     margin-top: 21px;
     margin-left: 3px;
@@ -33,7 +33,7 @@
     border-radius: 5px 5px 5px 5px;
 }
 
-#plushor {
+.horPlus {
     position: absolute;
     margin-top: 3px;
     margin-left: 20px;
@@ -43,12 +43,12 @@
     border-radius: 5px 5px 5px 5px;
 }
 
-#plus:hover > #plushor {
+.cardAdd:hover > .plusHor {
     background-color: rgb(235, 136, 69);  
     transition-duration: 700ms;
 }
 
-#plus:hover >  #plusvert {
+.cardAdd:hover >  .plusVert {
     background-color: rgb(235, 136, 69);  
     transition-duration: 700ms;
 }
