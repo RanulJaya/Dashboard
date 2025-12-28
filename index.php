@@ -7,7 +7,7 @@
 
 	$uri .= $_SERVER['HTTP_HOST'];
     // header("Access-Control-Allow-Origin: *");
-	header('Location: '.$uri.'/components/index.html');
+	header('Location: '.$uri.'/signOnPage.php');
 	exit;
 ?>
 Something is wrong with the XAMPP installation :-(
