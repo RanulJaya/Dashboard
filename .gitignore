@@ -1,2 +1,4 @@
 /dashboard
 /webalizer
+/node_modules
+/.env
