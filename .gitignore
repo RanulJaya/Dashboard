@@ -2,3 +2,4 @@
 /webalizer
 /node_modules
 /.env
+/vendor
