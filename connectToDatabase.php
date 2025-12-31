@@ -14,11 +14,26 @@
             $data[] = json_encode($row);
           }
 
-        //   echo json_encode($data);
-        
+          
           if (isset($_POST["username"])) {
             # code...
-            // echo getenv('USERNAME');
-            echo $_POST["username"];
+            for ($x = 0; $x < count($data); $x++){
+
+              $value = json_decode($data[$x], true);
+              if ($value['username'] == $_POST["username"] && $value['password'] == $_POST["pass"]) {
+                if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS']))  {
+                  # code...
+                  $uri = 'https://';
+                } else {
+                  $uri = 'http://';
+                }
+
+                $uri .= $_SERVER['HTTP_HOST'];
+                  // header("Access-Control-Allow-Origin: *");
+                header('Location: '.$uri.'/components/index.html');
+                exit;
+                }
+            }
+            echo "cannot connect";
         }
      ?>
