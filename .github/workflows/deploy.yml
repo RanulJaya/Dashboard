@@ -10,9 +10,9 @@ jobs:
    steps:
      - name: Checkout repository
        uses: actions/checkout@v4
-       
+
      - name: Deploy the app
        uses: digitalocean/app_action/deploy@v2
        with:
          app_name: lionfish-app
-         token: ${{ secrets.YOUR_DIGITALOCEAN_ACCESS_TOKEN }}
+         token: ${{ secrets.TESTUPDATES }}
