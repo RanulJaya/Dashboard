@@ -32,7 +32,7 @@ jobs:
          
      
      - name: Commit changes
-       uses: actions/checkout@v2
+       uses: actions/checkout@v4
      - run: rm db/.env
        shell: bash
      - run: |
