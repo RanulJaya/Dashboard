@@ -1,17 +1,23 @@
-name: Update App
+name: Deploy to DigitalOcean App Platform
 
 on:
- push:
-   branches: [main]
+  push:
+    branches:
+      - main
 
 jobs:
- deploy-app:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Checkout repository
-       uses: actions/checkout@v4
-
-     - name: Deploy the app
-       uses: digitalocean/app_action/deploy@v2
-       with:
-         token: ${{ secrets.TESTUPDATES }}
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.TESTUPDATES }}
+      - name: Deploy to App Platform
+        uses: digitalocean/app-platform-deploy@v2
+        with:
+          app_spec_location: .do/app.yaml # Or wherever your spec file is located
+          # Optional: provide an app name if it already exists
+          # app_name: your-app-name
