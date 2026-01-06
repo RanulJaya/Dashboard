@@ -18,5 +18,7 @@ jobs:
   environment_var:
     runs-on: ubuntu-latest
     steps:
-      - run: ls
+      - name: test
+        shell: bash
+        run: ls
       - run: echo "remove success"
