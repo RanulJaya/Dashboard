@@ -1,8 +1,8 @@
 spec:
-  name: lionfish-app
+  name: sample-app
   services:
   - environment_slug: php
     git:
       branch: main
       repo_clone_url: https://github.com/RanulJaya/Dashboard.git
-    name: lionfish-app
+    name: sample-app
