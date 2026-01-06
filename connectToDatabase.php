@@ -2,9 +2,18 @@
         require __DIR__ . '/vendor/autoload.php';
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/db/');
         $dotenv->load();
-        $conn = new mysqli(getenv('SERVER_NAME'), $_ENV['USERNAME'], $_ENV['PASSWRD'], $_ENV['SCHEMA']);
+        // $conn = new mysqli(getenv('SERVER_NAME'), $_ENV['USERNAME'], $_ENV['PASSWRD'], $_ENV['SCHEMA']);
+        $servername = $_ENV['HOST'];
+        // echo $servername;
 
-        $sql = "SELECT * FROM users";
+        
+        $conn = new mysqli($servername, $_ENV['USERNAME'], $_ENV['PASSWRD'], $_ENV['SCHEMA']);
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
+
+
+        $sql = "SELECT * FROM Users";
         $result = $conn->query($sql);
 
 
@@ -13,12 +22,13 @@
           while($row = $result->fetch_assoc()) {
             $data[] = json_encode($row);
           }
+
           
         
         $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
 
-          if (isset($_POST["username"])) {
+        if (isset($_POST["username"])) {
             # code...
             for ($x = 0; $x < count($data); $x++){
               $value = json_decode($data[$x], true);
@@ -41,4 +51,5 @@
         else{
           echo "Please enter in Username";
         }
+
      ?>
