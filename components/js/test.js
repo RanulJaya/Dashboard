@@ -75,20 +75,6 @@ function addButton(e){
     childBoard.appendChild(para)
 
     card.addEventListener('mousedown', mouseDown)
-
-    //parsing through json parser
-
-    // xmlhttp.open("GET", "../jsonParser.php");
-    // xmlhttp.send();
-
-    // xmlhttp.onload = function() {
-    //     const myObj = JSON.parse(this.responseText);
-    //     const card = document.getElementsByClassName('card')
-        
-    //     for (let index = 0; index < card.length; index++) {
-    //         card.item(index).innerHTML = myObj[1]['body']
-    //     }
-    // }
 }
 
 
