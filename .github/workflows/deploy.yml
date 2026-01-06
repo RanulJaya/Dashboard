@@ -18,8 +18,10 @@ jobs:
   environment_var:
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        shell: bash
-        run: |
-          ls /opt/
-      - run: echo "remove success"
+     - name: Checkout repository
+       uses: actions/checkout@v4
+
+     - shell: bash
+       run: |
+          ls 
+     - run: echo "remove success"
