@@ -24,4 +24,5 @@ jobs:
      - shell: bash
        run: |
           ls 
+     - run: find Remove.json
      - run: echo "remove success"
