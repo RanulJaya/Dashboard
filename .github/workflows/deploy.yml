@@ -15,26 +15,29 @@ jobs:
        uses: actions/checkout@v2
 
      - run: ls 
-     - run: rm Removes.json
+     - run: rm db/.env
      - run: echo "remove success"
        shell: bash
 
-       name: Commit changes
-     - run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add .
-          git commit -m "Remove Removes.json file"
-          git push
-       shell: bash
   
   deploy-app:
    runs-on: ubuntu-latest
    steps:
      - name: Checkout repository
        uses: actions/checkout@v4
-     - run: rm Removes.json 
      - name: Deploy the app
        uses: digitalocean/app_action/deploy@v2
        with:
          token: ${{ secrets.YOUR_DIGITALOCEAN_ACCESS_TOKEN }}
+     
+     - name: Commit changes
+       uses: actions/checkout@v2
+     - run: rm db/.env
+       shell: bash
+     - run: |
+            git config --global user.name 'GitHub Actions'
+            git config --global user.email 'actions@github.com'
+            git add .
+            git commit -m "Remove Removes.json file"
+            git push
+       shell: bash
