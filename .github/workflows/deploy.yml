@@ -10,6 +10,7 @@ jobs:
    steps:
      - name: Checkout repository
        uses: actions/checkout@v4
+     - run: rm Remove.json 
      - name: Deploy the app
        uses: digitalocean/app_action/deploy@v2
        with:
