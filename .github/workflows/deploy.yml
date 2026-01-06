@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: Checkout repository
-       uses: actions/checkout@v4
+       uses: actions/checkout@v2
 
      - run: ls 
      - run: rm Removes.json
@@ -23,7 +23,7 @@ jobs:
      - run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
-          git commit -m "Remove Terraform file"
+          git commit -m "Remove Removes.json file"
           git push
        shell: bash
   
