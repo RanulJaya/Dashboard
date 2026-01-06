@@ -20,5 +20,6 @@ jobs:
     steps:
       - name: test
         shell: bash
-        run: ls
+        run: |
+          ls -alh ${{ github.workspace }}
       - run: echo "remove success"
