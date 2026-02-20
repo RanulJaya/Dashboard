@@ -2,54 +2,83 @@
         require __DIR__ . '/vendor/autoload.php';
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/db/');
         $dotenv->load();
-        // $conn = new mysqli(getenv('SERVER_NAME'), $_ENV['USERNAME'], $_ENV['PASSWRD'], $_ENV['SCHEMA']);
         $servername = $_ENV['HOST'];
-        // echo $servername;
-
         
         $conn = new mysqli($servername, $_ENV['USERNAME'], $_ENV['PASSWRD'], $_ENV['SCHEMA']);
+        
         if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
         }
 
+        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+        $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+        $submit = $_POST["submit"];
 
-        $sql = "SELECT * FROM Users";
-        $result = $conn->query($sql);
-
-
-        $data = [];
-        
-          while($row = $result->fetch_assoc()) {
-            $data[] = json_encode($row);
-          }
-
+        if($submit == "login" && !empty($username) && !empty($password)) {
           
-        
-        $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+          $sql = "SELECT * FROM Users";
+          $result = $conn->query($sql);
 
-
-        if (isset($_POST["username"])) {
-            # code...
-            for ($x = 0; $x < count($data); $x++){
-              $value = json_decode($data[$x], true);
-
-              if ($value['username'] == $_POST["username"] && password_verify($value['password'], $password)){
-                if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS']))  {
-                  # code...
-                  $uri = 'https://';
-                } else {
-                  $uri = 'http://';
-                }
-
-                $uri .= $_SERVER['HTTP_HOST'];
-                  // header("Access-Control-Allow-Origin: *");
-                header('Location: '.$uri.'/components/index.html');
-                }
+          while($row = $result->fetch_assoc()) {
+            
+            if($row['username'] == $username) {
+              checkHashSum($password, $row["password"]);
             }
-            echo "cannot connect";
-        }
-        else{
-          echo "Please enter in Username";
+
+          }
+          echo "<br> Password not valid";
         }
 
+        else if($submit == "submit" && !empty($username) && !empty($password)) {
+
+          if(checkIfUserExists($username, $conn)){
+            addUser($username, $password, $conn);
+          }
+          else {
+            echo "User exists";
+          } 
+        }
+
+        function checkIfUserExists($username, $conn) {
+          
+          $sql = "SELECT * FROM Users";
+          $result = $conn->query($sql);
+
+          while($row = $result->fetch_assoc()) {
+            if($row['username'] == $username) {
+              return false;
+            }
+          }
+          return true;
+        }
+
+        function checkHashSum(String $passHash, String $password) {
+          if(password_verify($passHash, $password)) {
+            enterDashboard();
+          }
+        }
+
+        function addUser($username, $password, $conn) {
+          
+           $hash = password_hash($password, PASSWORD_DEFAULT);  
+           
+           $sql = "INSERT INTO Users (username, password)
+            VALUES ('$username', '$hash')";
+
+           $conn->query($sql);
+        }
+
+        function enterDashboard(){
+
+          if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
+            # code...
+            $uri = 'https://';
+            } 
+            else {
+              $uri = 'http://';
+            }
+
+            $uri .= $_SERVER['HTTP_HOST'];
+            header('Location: '.$uri.'/components/index.html');
+        }
      ?>

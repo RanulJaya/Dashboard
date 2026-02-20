@@ -7,15 +7,20 @@
 </head>
 <body>
     
-    <form action="/signOnPage.php" method="post">
+    <?php
+        include "header.php"
+    ?>
+
+    <form action="signOnPage.php" method="post">
         <label for="username">Username</label><br>
         <input type="text" id="username" name="username"><br>
         <label for="pass">Password</label><br>
-        <input type="text" id="pass" name="pass"><br><br>
-        <input type="submit" value="Submit">
+        <input type="text" id="pass" name="password"><br><br>
+        <input type="submit" name="submit" value="login">
     </form>       
-    
-    <?php include "connectToDatabase.php" ?>
 
+    <?php 
+        include "connectToDatabase.php";
+    ?>    
 </body> 
 </html>
