@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="stylesheet/sheet.css">
-    <link rel="stylesheet" href="stylesheet/boxstyle.css">
+    <link rel="stylesheet" href="stylesheet/boxstyle.css">    
+    <script defer type="text/javascript" src="js/script.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,14 +19,17 @@
                 </div>
             </div>
             <div id="cardGrab" class="card">
-                <div class="card-body" id="test">
+                <!-- <div class="card-body" id="test">
                     <textarea id="text" oninput="this.parentNode.dataset.replicatedValue = this.value">Hello World</textarea>
                     <p id="demo"></p>
-                </div>
+                </div> -->
             </div>
         </div>
-        <script type="module" src="js/test.js"></script>
     </body>
 </html>
+
+<?php
+    
+?>
 
        

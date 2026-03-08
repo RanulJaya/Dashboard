@@ -4,7 +4,7 @@
         $dotenv->load();
         $servername = $_ENV['HOST'];
         
-        $conn = new mysqli($servername, $_ENV['USERNAME'], $_ENV['PASSWRD'], $_ENV['SCHEMA']);
+        $conn = new mysqli($servername, $_ENV['USERNAME'], $_ENV['PASSWRD'], $_ENV['SCHEMA']); 
         
         if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
@@ -22,7 +22,8 @@
           while($row = $result->fetch_assoc()) {
             
             if($row['username'] == $username) {
-              checkHashSum($password, $row["password"]);
+              checkHashSum($password, $row["password"], $username);
+              break;
             }
 
           }
@@ -39,6 +40,10 @@
           } 
         }
 
+        // else if(isset($_COOKIE[$username])) {
+
+        // }
+
         function checkIfUserExists($username, $conn) {
           
           $sql = "SELECT * FROM Users";
@@ -52,9 +57,9 @@
           return true;
         }
 
-        function checkHashSum(String $passHash, String $password) {
+        function checkHashSum(String $passHash, String $password, String $username) {
           if(password_verify($passHash, $password)) {
-            enterDashboard();
+            enterDashboard($username);
           }
         }
 
@@ -68,7 +73,7 @@
            $conn->query($sql);
         }
 
-        function enterDashboard(){
+        function enterDashboard(String $username){
 
           if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
             # code...
@@ -78,7 +83,11 @@
               $uri = 'http://';
             }
 
+            $cookie_name = "username";
+            $cookie_value = $username;
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+                        
             $uri .= $_SERVER['HTTP_HOST'];
-            header('Location: '.$uri.'/components/index.html');
+            header('Location: '.$uri.'/components/index.php');
         }
-     ?>
+     ?> 
