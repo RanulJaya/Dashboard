@@ -27,6 +27,7 @@ body {
 }
 
 .card {
+
     position: absolute;
     cursor: grabbing;
     width: 400px;

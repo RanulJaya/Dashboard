@@ -19,6 +19,7 @@
                 </div>
             </div>
             <div id="cardGrab" class="card">
+                Hello World
                 <!-- <div class="card-body" id="test">
                     <textarea id="text" oninput="this.parentNode.dataset.replicatedValue = this.value">Hello World</textarea>
                     <p id="demo"></p>
@@ -28,8 +29,6 @@
     </body>
 </html>
 
-<?php
-    
-?>
+
 
        

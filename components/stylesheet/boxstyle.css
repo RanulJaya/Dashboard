@@ -8,6 +8,7 @@
 }
 
 .cardAdd {
+
     display: flex;
     height: 50px;
     width: 400px;
@@ -60,9 +61,5 @@
 .cardAdd:hover >  .plusVert {
     background-color: rgb(235, 136, 69);  
     transition-duration: 700ms;
-}
-
-.cardGarb {
-    left: 100px;
 }
 

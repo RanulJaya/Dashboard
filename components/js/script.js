@@ -46,15 +46,38 @@ function addArrow(startX, startY, card) {
 
 }
 
-function addCard(y, cardId, i) {
+function addCard(y, cardId, i, data) {
 
     let app = document.getElementById(cardId);
     let cardDiv = document.createElement("div");
     let length = card.length;
+    let body = data.body
 
     cardDiv.id = "cardGrab" + i;
     cardDiv.className = "card";
 
+    if(body.search("https") > 0) {
+        let link = document.createElement("a")
+        let linkTest = document.createTextNode(body.slice(body.search("https")))
+        
+        link.appendChild(linkTest)
+        link.title = body.slice(body.search("https"))
+        link.href = body.slice(body.search("https"))
+        link.style.color = "blue"
+
+        let replaceLinkText = body.replace(body.slice(body.search("https")), "")
+
+        cardDiv.style.backgroundColor = data.colors.colorBody
+        cardDiv.style.color = data.colors.colorText
+
+        cardDiv.textContent = replaceLinkText
+        cardDiv.appendChild(link)
+
+    } else {
+        cardDiv.style.backgroundColor = data.colors.colorBody
+        cardDiv.style.color = data.colors.colorText
+        cardDiv.textContent = body
+    }
     cardDiv.style.top = 100 + y + "px";
     cardDiv.style.left = 0 + "px";
     
@@ -66,10 +89,49 @@ const header = {
     'Content-Type': 'application/json'
 }
 
-// const response = fetch('http://localhost/jsonParser.php', {
-//     method:'GET',
-//     headers: header
-// });
+card.forEach(app => {
+    app.style.top = "100px";
+    app.style.left = "1080px";
+})
+
+const response = fetch('http://localhost/jsonParser.php', {
+    method:'GET',
+    headers: header
+});
+
+
+runParaser()
+
+async function runParaser() {
+
+    let userData = ""
+    let count = 0
+
+    await response.then(async(res) => res.json())
+    .then(async(data) => userData = data)
+    .catch(err => console.error(`Cannot ${err}`))
+
+    Object.values(userData).forEach( data => {
+        let cardAdd = ""
+
+        if(count > 0) {
+            cardAdd = document.getElementById("cardGrab" + count.toString());
+        } else {
+            cardAdd = document.getElementById("cardGrab");
+        }
+
+        let width = cardAdd.clientWidth / 2;
+        let height = cardAdd.clientHeight;
+
+        let y = document.documentElement.scrollTop + height;
+
+        addArrow(width, y, cardAdd);
+        addCard(height, cardAdd.id, (count +1).toString(), data);
+
+        count++;
+    })
+}
+
 
 // response.then(res => res.json())
 // .then(data => {
@@ -97,31 +159,45 @@ const header = {
 
 
 addButton['addCard'].addEventListener("click", async(e) => {
+    
+    const data = {
+        username: 'johndoe',
+        id: 123
+    };
 
-    let cardPane = document.querySelectorAll('.card');
-    let i = 0;
+    fetch('jsonParser.php', {
+        method: 'POST',
+        headers: header,
+        body: JSON.stringify(data)  // No manual headers needed; the browser sets 'Content-Type' automatically
+    })
+    .then(response => response.json())
+    .then(data => console.log('Success:', data.message))
+    .catch((error) => console.error('Error:', error));
 
-    cardPane.forEach(app => {
+    // let cardPane = document.querySelectorAll('.card');
+    // let i = 0;
 
-        i = i + 1;
+    // cardPane.forEach(app => {
 
-        if(i == cardPane.length) {        
-            let cardAdd = document.getElementById(app.id.toString());
+    //     i = i + 1;
 
-            let width = cardAdd.clientWidth / 2;
-            let height = cardAdd.clientHeight;
+    //     if(i == cardPane.length) {        
+    //         let cardAdd = document.getElementById(app.id.toString());
 
-            let y = document.documentElement.scrollTop + height;
+    //         let width = cardAdd.clientWidth / 2;
+    //         let height = cardAdd.clientHeight;
 
-            addArrow(width, y, cardAdd);
-            addCard(height, app.id.toString(), i.toString());
-        }
+    //         let y = document.documentElement.scrollTop + height;
+
+    //         addArrow(width, y, cardAdd);
+    //         addCard(height, app.id.toString(), i.toString());
+    //     }
 
 
-    });
+    // });
 
-    cardPane = document.querySelectorAll('.card');
-    updateDOM();
+    // cardPane = document.querySelectorAll('.card');
+    // updateDOM();
 
 })
 
