@@ -1,0 +1,39 @@
+[  
+    {
+        "id": 1,
+        "body": "Visit my website: https://ranuljaya.github.io/ranulweb/"
+        ,
+        "colors": {
+            "id": "color-purple",
+            "colorHeader": "#FED0FD",
+            "colorBody": "#FEE5FD",
+            "colorText": "#18181A"
+        },
+        "position": { "x": 505, "y": 10 }
+    },
+    {
+        "id": 2,
+        "body": 
+            "Visit my Github: https://github.com/RanulJaya"
+        ,
+        "colors": {
+            "id": "color-blue",
+            "colorHeader": "#9BD1DE",
+            "colorBody": "#A6DCE9",
+            "colorText": "#18181A"
+        },
+        "position": { "x": 305, "y": 110 }
+    },
+    {
+        "id": 3,
+        "body": "This is still a test in progress for the website."
+        ,
+        "colors":{
+            "id": "color-yellow",
+            "colorHeader": "#FFEFBE",
+            "colorBody": "#FFF5DF",
+            "colorText": "#18114A"
+        },
+    "position": { "x": 605, "y": 500 }
+    }
+]
