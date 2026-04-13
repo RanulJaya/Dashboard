@@ -16,7 +16,9 @@
 /Cookies*
 /DIPS*
 /ssh*
-/test*
+/test.js
+/test.jsa
+/test
 /Trust*
 /Transport*
 /Preferences*
