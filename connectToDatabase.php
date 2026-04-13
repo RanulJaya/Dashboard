@@ -2,9 +2,9 @@
         require __DIR__ . '/vendor/autoload.php';
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/db/');
         $dotenv->load();
-        $servername = $_ENV['HOST'];
+        $servername = getenv('HOST');
         
-        $conn = new mysqli($servername, $_ENV['USERNAME'], $_ENV['PASSWRD'], $_ENV['SCHEMA']); 
+        $conn = new mysqli($servername, getenv('USERNAME'), getenv('PASSWRD'), getenv('SCHEMA')); 
         
         if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
