@@ -1,7 +1,7 @@
     <?php
-        require __DIR__ . '/vendor/autoload.php';
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/db/');
-        $dotenv->load();
+        // require __DIR__ . '/vendor/autoload.php';
+        // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/db/');
+        // $dotenv->load();
         $servername = getenv('HOST');
         
         $conn = new mysqli($servername, getenv('USERNAME'), getenv('PASSWRD'), getenv('SCHEMA')); 
