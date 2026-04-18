@@ -13,8 +13,8 @@ jobs:
     steps:
      - name: Checkout repository
        uses: actions/checkout@v2
-     - run: ls
-    #  - run: doctl auth init
+    #  - run: ls
+     - run: doctl auth init
 
 
     #  - run: rm db/.env
