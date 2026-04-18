@@ -94,7 +94,7 @@ card.forEach(app => {
     app.style.left = "1080px";
 })
 
-const response = fetch('http://localhost/jsonParser.php', {
+const response = fetch('https://lionfish-app-cqsye.ondigitalocean.app/components/jsonParser.php', {
     method:'GET',
     headers: header
 });

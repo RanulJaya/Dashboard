@@ -1,8 +1,32 @@
+ingress:
+  rules:
+  - component:
+      name: lionfish-app
+    match:
+      path:
+        prefix: /
 name: lionfish-app
+region: nyc
 services:
 - environment_slug: php
+  envs:
+  - key: HOST
+    scope: RUN_AND_BUILD_TIME
+    value: ${{ secrets.HOST }}
+  - key: USERNAME
+    scope: RUN_AND_BUILD_TIME
+    value: ${{ secrets.USERNAME }}
+  - key: PASSWRD
+    scope: RUN_AND_BUILD_TIME
+    value: ${{ secrets.PASSWRD }}
+  - key: SCHEMA
+    scope: RUN_AND_BUILD_TIME
+    value: ${{ secrets.SCHEMA }}
   github:
     branch: main
-    deploy_on_push: true
     repo: RanulJaya/Dashboard
+  http_port: 8080
+  instance_count: 1
+  instance_size_slug: apps-s-1vcpu-0.5gb
   name: lionfish-app
+  source_dir: /
